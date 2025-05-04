@@ -1,0 +1,20 @@
+﻿@using System.Globalization
+@model List<Ekol_Plast_MVC.Models.Contact>
+
+<div class="container">
+    @foreach (var ponude in Model)
+    {
+        <small style="color:darkgray ">@ponude.Date.ToString("dddd, dd MMMM yyyy", CultureInfo.CreateSpecificCulture("sr-Latn-ME"))</small>
+        <div class="card">
+            <div class="card-header">
+                @ponude.Name  
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"> <a style="color:green" href="mailto:@ponude.Email">@ponude.Email</a> </li>
+                <li class="list-group-item"> <a style="color:green" href="tel:@ponude.Number">@ponude.Number</a> </li>
+                <li class="list-group-item">@ponude.Body</li>
+            </ul>
+        </div>
+        <hr />
+    }
+</div>

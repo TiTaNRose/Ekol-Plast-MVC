@@ -1,0 +1,45 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+
+@model Ekol_Plast_MVC.Models.Posts
+ 
+@{
+    ViewData["Title"] = Model.Name;
+
+    // Wrap the Model.Text property in @Html.Raw() to render HTML content
+    string htmlContent = Model.Text;
+}
+<meta property="fb:app_id" content="297555732445824" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="@Url.Action("Details", "Posts", new { id = Model.Id, title = Ekol_Plast_MVC.Helpers.UrlHelper.SanitizeUrl(Model.Name) })" />
+<meta property="og:title" content="@Model.Name" />
+<meta property="og:image" content="@Model.ImageURL" />
+<meta property="og:description" content="@Model.Subname" />
+<br />
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-2"> </div>
+
+        <div class="col-md-8">
+            <h2>@Model.Name</h2>
+            <p class="lead">@Model.Subname</p>
+
+            <img src="@Model.ImageURL" class="img-fluid" alt="Post Image">
+
+            <!-- Display text under image -->
+            <p>@Html.Raw(htmlContent)</p>
+            </br>
+
+            @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+            {
+                @*  Dugmad *@
+                <a href="@Url.Action("Edit", "Posts", new { id = Model.Id })" class="btn btn-info m-2">Edit</a>
+                <a  href="@Url.Action("Delete", "Posts", new { id = Model.Id })" class="btn btn-danger m-2">Delete</a>   
+                <button disabled class="btn btn-dark">Views: @Model.Views</button> 
+            }
+        </div>
+        </div>
+    </div>
+    </div>

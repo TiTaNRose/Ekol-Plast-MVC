@@ -1,0 +1,84 @@
+﻿@model Ekol_Plast_MVC.Models.Posts
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container"
+
+    <h1>Create New Post</h1>
+
+    <form asp-action="Create" class="mt-4">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Name" class="control-label">Name</label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Subname" class="control-label">Subname</label>
+            <input asp-for="Subname" class="form-control" />
+            <span asp-validation-for="Subname" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Text" class="control-label">Text</label>
+            @Html.TextAreaFor(model => model.Text, new { @class = "form-control", @id = "Text" })
+
+            <span asp-validation-for="Text" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Text2" class="control-label">Text2</label>
+            <textarea asp-for="Text2" class="form-control" rows="5"></textarea>
+            <span asp-validation-for="Text2" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Text3" class="control-label">Text3</label>
+            <textarea asp-for="Text3" class="form-control" rows="5"></textarea>
+            <span asp-validation-for="Text3" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ImageURL" class="control-label">Image URL</label>
+            <input asp-for="ImageURL" class="form-control" />
+            <span asp-validation-for="ImageURL" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ImageURL2" class="control-label">Image URL2</label>
+            <input asp-for="ImageURL2" class="form-control" />
+            <span asp-validation-for="ImageURL2" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ImageURL3" class="control-label">Image URL3</label>
+            <input asp-for="ImageURL3" class="form-control" />
+            <span asp-validation-for="ImageURL3" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ImageURL4" class="control-label">Image URL4</label>
+            <input asp-for="ImageURL4" class="form-control" />
+            <span asp-validation-for="ImageURL4" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ImageURL5" class="control-label">Image URL5</label>
+            <input asp-for="ImageURL5" class="form-control" />
+            <span asp-validation-for="ImageURL5" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+    </form>
+</div>
+
+<!-- In your _Layout.cshtml -->
+<head>
+    <!-- Other meta tags and stylesheets -->
+    <script src="https://cdn.tiny.cloud/1/tgpgv9yxpf74dbvb552ekbh39okdnnv5i5gc3ajwo2msqnqb/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea#Text', // Replace 'Text' with the ID of your textarea
+            plugins: 'advlist autolink lists link image charmap print preview anchor',
+            toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+            toolbar_mode: 'floating',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name'
+        });
+    </script>
+</head>

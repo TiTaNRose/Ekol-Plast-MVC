@@ -1,0 +1,53 @@
+﻿@model List<Ekol_Plast_MVC.Models.Posts>
+@using Ekol_Plast_MVC.Helpers
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+
+<div class="container">
+
+@{
+    ViewData["Title"] = "Блог";
+}
+<br /> <br />
+    <div class="row">
+        @foreach (var article in Model)
+        {
+            string pregledi;
+
+            if (article.Views == 1)
+            {
+                pregledi = "Преглед";
+            }
+            else
+            {
+                pregledi = "Прегледи";
+            }
+
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                            <img src="@article.ImageURL" class="card-img-top" alt="Post Image">
+                    <div class="card-body">
+                                <h5 class="card-title">@article.Name</h5>
+                                <p class="card-text">@article.Subname</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group"> 
+                                    <a href="@Url.Action("Details", "Posts", new { id = article.Id, title = Ekol_Plast_MVC.Helpers.UrlHelper.SanitizeUrl(article.Name) })" class="btn btn-sm btn-outline-secondary">Види повеќе</a>
+                                </div>
+                            @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                            {
+                                <small class="text-muted">@article.Views @pregledi </small>
+                            }
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+</div>
+
+
+ 
+
+
